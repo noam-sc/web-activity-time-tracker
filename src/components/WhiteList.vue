@@ -45,6 +45,7 @@ import { injectStorage } from '../storage/inject-storage';
 import { StorageParams } from '../storage/storage-params';
 import { isDomainEquals } from '../utils/common';
 import { extractHostname } from '../utils/extract-hostname';
+import { sanitizeUserInput } from '../utils/security';
 
 const { t } = useI18n();
 
@@ -60,8 +61,11 @@ onMounted(async () => {
 });
 
 function addToWhiteList() {
+  // SECURITY FIX: Sanitize user input before processing
+  const sanitizedInput = sanitizeUserInput(newWebsiteForWhiteList.value || '');
+
   const existingItem = whiteList.value?.find(x =>
-    isDomainEquals(extractHostname(x), extractHostname(newWebsiteForWhiteList.value!)),
+    isDomainEquals(extractHostname(x), extractHostname(sanitizedInput)),
   );
   if (existingItem !== undefined) {
     notification.notify({
@@ -69,7 +73,7 @@ function addToWhiteList() {
       type: 'error',
     });
   } else {
-    const newWebsite = extractHostname(newWebsiteForWhiteList.value!);
+    const newWebsite = extractHostname(sanitizedInput);
     whiteList.value?.push(newWebsite);
     save(whiteList.value);
     newWebsiteForWhiteList.value = '';

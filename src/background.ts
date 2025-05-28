@@ -9,6 +9,7 @@ import { todayLocalDate } from './utils/date';
 import { checkPomodoro } from './functions/pomodoro';
 import { Messages } from './utils/messages';
 import { injectTabsRepositorySingleton } from './repository/inject-tabs-repository';
+import { isValidMessage, sanitizeBackupData } from './utils/security';
 
 logger.log('Start background script');
 let pomodoroTimer: number;
@@ -77,6 +78,12 @@ scheduleJobs();
 initTracker();
 
 Browser.runtime.onMessage.addListener(async message => {
+  // SECURITY FIX: Validate message structure to prevent malicious messages
+  if (!isValidMessage(message)) {
+    console.warn('Invalid message received:', message);
+    return;
+  }
+
   if (message == Messages.ClearAllData) {
     const storage = injectStorage();
     const repo = await injectTabsRepositorySingleton();
@@ -85,7 +92,9 @@ Browser.runtime.onMessage.addListener(async message => {
   }
   if (message.message == Messages.Restore) {
     const storage = injectStorage();
-    await storage.saveTabs(message.data);
+    // SECURITY FIX: Sanitize backup data before processing
+    const sanitizedData = sanitizeBackupData(message.data);
+    await storage.saveTabs(sanitizedData);
     const repo = await injectTabsRepositorySingleton();
     repo.initAsync();
   }

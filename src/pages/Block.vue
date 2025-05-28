@@ -43,6 +43,8 @@ import { BLOCK_DEFERRAL_DEFAULT, StorageParams } from '../storage/storage-params
 import { convertLimitTimeToString } from '../utils/converter';
 import PromoClearYouTube from '../components/PromoClearYouTube.vue';
 import { canDefering, defering } from '../functions/deferList';
+import { isValidRedirectUrl } from '../utils/security';
+import Browser from 'webextension-polyfill';
 
 const { t } = useI18n();
 
@@ -81,7 +83,14 @@ async function deferring() {
     haveToShowDeffering.value
   ) {
     await defering(webSite.value, 5);
-    if (sourceUrl.value != '') window.location.replace(sourceUrl.value);
+
+    // SECURITY FIX: Validate URL before redirect to prevent open redirect attacks
+    if (sourceUrl.value && isValidRedirectUrl(sourceUrl.value)) {
+      window.location.replace(sourceUrl.value);
+    } else {
+      // Redirect to safe default page if URL is invalid or empty
+      window.location.replace(Browser.runtime.getURL('src/dashboard.html'));
+    }
   }
 }
 </script>
