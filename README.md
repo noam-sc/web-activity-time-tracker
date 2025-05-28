@@ -23,6 +23,15 @@ If you have suggestions or problems using the extension, please [submit a bug or
 
 Web Activity Time Tracker is not yet available via the official Chrome Web Store.
 
+# Install from ZIP file
+
+1. Download the latest available version from the [releases page](https://github.com/noam-sc/web-activity-time-tracker/releases).
+2. Extract the ZIP file to your preferred location (whichever suits you).
+3. Open the Chrome browser and navigate to `chrome://extensions/`.
+4. Enable "Developer mode" in the upper right corner.
+5. Click on the "Load unpacked" button and select the extracted folder.
+6. The extension should now be installed and active in your browser. **Be sure to keep the extracted folder intact, as the extension will not work if the files are moved or deleted.**
+
 # Install as an extension from source
 
 1. Download the latest available version and unarchive to your preferred location (whichever suits you).
