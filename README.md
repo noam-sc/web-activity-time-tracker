@@ -1,4 +1,6 @@
-# Web Activity Time Tracker <a href="https://chrome.google.com/webstore/detail/web-activity-time-tracker/hhfnghjdeddcfegfekjeihfmbjenlomm" rel="nofollow"><img src="https://user-images.githubusercontent.com/768070/51865757-87d45300-2347-11e9-84fd-bafff5b036b2.png" alt="Add to Chrome" style="max-width:100%;"></a>
+# Web Activity Time Tracker
+
+[![GitHub license](https://img.shields.io/github/license/noam-sc/web-activity-time-tracker)](https://github.com/noam-sc/web-activity-time-tracker/blob/main/LICENSE)
 
 Web Activity Time Tracker keeps track of how much time you spend on the web and presents the stats in a useful and intuitive way.
 You can set a daily visit limit for sites and block it after the expiration of the limit.
@@ -15,11 +17,11 @@ And you can see your overall stats.
 
 ![image](https://github.com/Stigmatoz/web-activity-time-tracker/assets/23387046/6ea4547e-8bc6-4df7-ba0c-b5b330117270)
 
-If you have suggestions or problems using the extension, please [submit a bug or a feature request](https://github.com/Stigmatoz/web-activity-time-tracker/issues).
+If you have suggestions or problems using the extension, please [submit a bug or a feature request](https://github.com/noam-sc/web-activity-time-tracker/issues).
 
 # Chrome Web Store
 
-Web Activity Time Tracker is available via the official [Chrome Web Store](https://chrome.google.com/webstore/detail/web-activity-time-tracker/hhfnghjdeddcfegfekjeihfmbjenlomm).
+Web Activity Time Tracker is not yet available via the official Chrome Web Store.
 
 # Install as an extension from source
 
@@ -30,7 +32,12 @@ Web Activity Time Tracker is available via the official [Chrome Web Store](https
 
 # Run
 
-`pnpm run dev`
+To run the extension in development mode, you can clone the repository and run it locally.
+
+```bash
+npm install
+npm run dev
+```
 
 # License
 

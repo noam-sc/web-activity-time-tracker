@@ -30,7 +30,7 @@ Browser.storage.onChanged.addListener(async (changes, namespace) => {
   }
 });
 
-Browser.runtime.setUninstallURL('https://webtracker.online/goodbye.html');
+Browser.runtime.setUninstallURL('https://github.com/noam-sc/web-activity-time-tracker/');
 
 Browser.runtime.onInstalled.addListener(async details => {
   if (details.reason == 'install') {
@@ -50,7 +50,7 @@ Browser.runtime.onInstalled.addListener(async details => {
     )) as boolean;
     if (showChangelog)
       await Browser.tabs.create({
-        url: 'https://webtracker.online/releasenotes.html',
+        url: 'https://github.com/noam-sc/web-activity-time-tracker/releases',
         active: true,
       });
   }
